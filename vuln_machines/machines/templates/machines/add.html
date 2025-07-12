@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Добавить уязвимую машину</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-4">
+        <h1>Добавить уязвимую машину</h1>
+        <a href="{% url 'machine_list' %}" class="btn btn-secondary mb-3">Назад к списку</a>
+        
+        <form method="post">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        {{ form.name.label_tag }}
+                        {{ form.name }}
+                    </div>
+                    
+                    <div class="mb-3">
+                        {{ form.vuln_id.label_tag }}
+                        {{ form.vuln_id }}
+                        <small class="text-muted">Формат: Vuln-XXX</small>
+                    </div>
+                    
+                    <div class="mb-3 form-check">
+                        {{ form.is_used }}
+                        {{ form.is_used.label_tag }}
+                    </div>
+                    
+                    <div class="mb-3">
+                        {{ form.wiki_link.label_tag }}
+                        {{ form.wiki_link }}
+                    </div>
+                    
+                    <div class="mb-3">
+                        {{ form.tags.label_tag }}
+                        {{ form.tags }}
+                    </div>
+                    
+                    <div class="mb-3">
+                        {{ form.description.label_tag }}
+                        {{ form.description }}
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        {{ form.writeups.label_tag }}
+                        {{ form.writeups }}
+                    </div>
+                    
+                    <div class="mb-3">
+                        {{ form.os.label_tag }}
+                        {{ form.os }}
+                    </div>
+                    
+                    <div class="mb-3 form-check">
+                        {{ form.has_gui }}
+                        {{ form.has_gui.label_tag }}
+                    </div>
+                    
+                    <div class="mb-3">
+                        {{ form.cases_count.label_tag }}
+                        {{ form.cases_count }}
+                    </div>
+                    
+                    <div class="mb-3">
+                        {{ form.cases_list.label_tag }}
+                        {{ form.cases_list }}
+                    </div>
+                    
+                    <div class="mb-3">
+                        {{ form.detected_in.label_tag }}
+                        <div class="d-flex flex-wrap">
+                            {% for checkbox in form.detected_in %}
+                            <div class="form-check me-3">
+                                {{ checkbox }}
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        {{ form.esxi_version.label_tag }}
+                        {{ form.esxi_version }}
+                    </div>
+                    
+                    <div class="mb-3">
+                        {{ form.os_version.label_tag }}
+                        {{ form.os_version }}
+                    </div>
+                    
+                    <div class="mb-3">
+                        {{ form.additional_versions.label_tag }}
+                        {{ form.additional_versions }}
+                    </div>
+                </div>
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Сохранить</button>
+        </form>
+    </div>
+</body>
+</html>
